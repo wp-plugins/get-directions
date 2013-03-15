@@ -19,7 +19,7 @@ The plugin automatically picks up the visitor's location through the browser and
 
 Works on both desktop & mobile devices and can be used on full or responsive mobile websites. When your website is visited on mobile devices users get directions to the set location through Google Maps or the mobile device's default map app, making it easy for them to navigate to your location on the go.
 
-Questions? Try out facebook page https://www.facebook.com/llocally
+Questions? Try our facebook page https://www.facebook.com/llocally
 == Installation ==
 
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
