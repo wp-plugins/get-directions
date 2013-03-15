@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: MapQuest, Maps, Responsive, Directions
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 1.001a
+Stable tag: 1.001b
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,9 +88,9 @@ Currently only 1 marker can be used on a non-route map
 
 == Screenshots ==
 
-1. [widget](http://llocally.com/wp-content/uploads/2013/03/get-directions-desktp.jpg)
-1. [desktop map](http://llocally.com/wp-content/uploads/2013/03/get-directions-desktp.jpg)
-1. [mobile map](http://llocally.com/wp-content/uploads/2013/03/get-directions-mobile.jpg) 
+1. Map showing route for desktops
+2. Map showing button to integrate to mobile device maps
+3. Widget
 
 == Changelog ==
 
