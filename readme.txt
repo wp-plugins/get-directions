@@ -88,9 +88,9 @@ Currently only 1 marker can be used on a non-route map
 
 == Screenshots ==
 
-1. [widget](http://llocally.com/wp-content/uploads/2013/03/get-directions-desktp.jpg)
-1. [desktop map](http://llocally.com/wp-content/uploads/2013/03/get-directions-desktp.jpg)
-1. [mobile map](http://llocally.com/wp-content/uploads/2013/03/get-directions-mobile.jpg) 
+1. Map showing route for desktops
+2. Map showing button to integrate to mobile device maps
+3. Widget
 
 == Changelog ==
 
