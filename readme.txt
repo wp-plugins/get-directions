@@ -19,6 +19,7 @@ The plugin automatically picks up the visitor's location through the browser and
 
 Works on both desktop & mobile devices and can be used on full or responsive mobile websites. When your website is visited on mobile devices users get directions to the set location through Google Maps or the mobile device's default map app, making it easy for them to navigate to your location on the go.
 
+Questions? Try our facebook page https://www.facebook.com/llocally
 == Installation ==
 
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
@@ -85,6 +86,8 @@ Show a simple map without a route, with marker with some details
 this feature is not yet available
 = Can I display multiple map markers? =
 Currently only 1 marker can be used on a non-route map
+= Do you have other plugins? =
+We have some more plugins in the pipeline at llocally where we produce <a href="http://llocally.com>cheap websites</a> based on Wordpress
 
 == Screenshots ==
 
@@ -95,7 +98,11 @@ Currently only 1 marker can be used on a non-route map
 == Changelog ==
 
 = 1.0 =
-*  added readme.txt    
+*  added readme.txt   
+= 1.001a =
+* added images to readme
+= 1.001b =
+* readme changes 
 
 == Upgrade notice ==
 
