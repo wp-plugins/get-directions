@@ -86,6 +86,8 @@ Show a simple map without a route, with marker with some details
 this feature is not yet available
 = Can I display multiple map markers? =
 Currently only 1 marker can be used on a non-route map
+= Do you have other plugins? =
+We have some more plugins in the pipeline at llocally where we produce <a href="http://llocally.com>cheap websites</a> based on Wordpress
 
 == Screenshots ==
 
@@ -96,7 +98,11 @@ Currently only 1 marker can be used on a non-route map
 == Changelog ==
 
 = 1.0 =
-*  added readme.txt    
+*  added readme.txt   
+= 1.001a =
+* added images to readme
+= 1.001b =
+* readme changes 
 
 == Upgrade notice ==
 
