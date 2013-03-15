@@ -29,13 +29,7 @@ Questions? Try our facebook page https://www.facebook.com/llocally
 
 == Frequently asked questions ==
 
-= how do I change the color and size of the 'get directions' button? =
-the button is totally styled in CSS so you can change this as you like in your theme's style.css=
-= can I remove the credit link to llocally displayed under the maps? =
-yes you can modify the source under the GPL, however for a very small donation we can tell how you to turn off tat link without coding
-= can I change the style of the map pointer? =
-for the route pointers (A to B) the style is fixed, but for the single map pin you can change these. There is a filter hook that can be coded in your theme's functions.php
-= how do I use the shortcod e=
+= how do I use the shortcode =
 to display a map on the page use the short code
 [get-directions] with the appropriate parameters
 
@@ -86,6 +80,12 @@ Show a simple map without a route, with marker with some details
 this feature is not yet available
 = Can I display multiple map markers? =
 Currently only 1 marker can be used on a non-route map
+= how do I change the color and size of the 'get directions' button? =
+the button is totally styled in CSS so you can change this as you like in your theme's style.css
+= can I remove the credit link to llocally displayed under the maps? =
+yes you can modify the source under the GPL, however for a very small donation we can tell how you to turn off the link without coding
+= can I change the style of the map pointer? =
+for the route pointers (A to B) the style is fixed, but for the single map pin you can change these. There is a filter hook that can be coded in your theme's functions.php
 = Do you have other plugins? =
 We have some more plugins in the pipeline at http://llocally.com
 
