@@ -558,3 +558,4 @@ class getdirections extends WP_Widget {
 	
 
 } // class getdirections
+
