@@ -8,36 +8,33 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Get Directions is a flexible, responsive map plugin , that uses MapQuest.   It provides either a widget or a shortcode to create a map with option route directions. It auto detects mobile devices and changes the rout display to a button to integrate to the mobile device' GPS and own maps where permitted.
-
+Get Directions is a flexible, responsive map plugin , that uses MapQuest. Widget and shortcodes that auto detect mobiles.
 == Description ==
 
 The most comprehensive way for customers to get directions to your shop, office or location with ease on desktop, mobile & responsive themes 
 
-
 Once you set the location, visitors to the website will be able to get directions to that location.
 
-The plugin automatically picks up the visitor’s location through the browser and mobile gps (when allowed).
+The plugin automatically picks up the visitor's location through the browser and mobile gps (when allowed).
 
-Works on both desktop & mobile devices and can be used on full or responsive mobile websites. When your website is visited on mobile devices users get directions to the set location through Google Maps or the mobile device’s default map app, making it easy for them to navigate to your location on the go.
+Works on both desktop & mobile devices and can be used on full or responsive mobile websites. When your website is visited on mobile devices users get directions to the set location through Google Maps or the mobile device's default map app, making it easy for them to navigate to your location on the go.
 
 == Installation ==
 
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
 1. Get a  free MapQuest API key from [http://developer.mapquest.com/web/products/open](http://developer.mapquest.com/web/products/open)
-1. Add the API code to your wp-config.php file
-`define ( 'MAPQUEST_API_KEY', 'longAPIstring1233');`
+1. Add the API code to your wp-config.php file `define ( 'MAPQUEST_API_KEY', 'longAPIstring1233');`
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently asked questions ==
 
-=how do I change the color and size of the 'get directions' button?=
+= how do I change the color and size of the 'get directions' button? =
 the button is totally styled in CSS so you can change this as you like in your theme's style.css=
-=can I remove the credit link to llocally displayed under the maps?=
+= can I remove the credit link to llocally displayed under the maps? =
 yes you can modify the source under the GPL, however for a very small donation we can tell how you to turn off tat link without coding
-=can I change the style of the map pointer=
+= can I change the style of the map pointer? =
 for the route pointers (A to B) the style is fixed, but for the single map pin you can change these. There is a filter hook that can be coded in your theme's functions.php
-=how do I use the shortcode=
+= how do I use the shortcod e=
 to display a map on the page use the short code
 [get-directions] with the appropriate parameters
 
@@ -84,9 +81,9 @@ Get directions to zipcode 10118 in the USA
 Show a simple map without a route, with marker with some details
 [get-directions latlong='40.748021,-73.98512' hideroute='yes' rotitle='Empire State Building' roicontent='Empire State Building, 10118, NY, NY, USA]
 
-=Can I display multiple maps (shortcodes or widgets) on one page?=
+= Can I display multiple maps (shortcodes or widgets) on one page? =
 this feature is not yet available
-=Can I display multiple map markers?=
+= Can I display multiple map markers? =
 Currently only 1 marker can be used on a non-route map
 
 == Screenshots ==
@@ -97,7 +94,7 @@ Currently only 1 marker can be used on a non-route map
 
 == Changelog ==
 
-=1.0=
+= 1.0 =
 *  added readme.txt    
 
 == Upgrade notice ==
