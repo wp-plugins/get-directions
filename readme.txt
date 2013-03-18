@@ -24,7 +24,7 @@ Questions? Try our facebook page https://www.facebook.com/llocally
 
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
 1. Get a  free MapQuest API key from [http://developer.mapquest.com/web/products/open](http://developer.mapquest.com/web/products/open)
-1. Add the API code to your wp-config.php file `define ( 'MAPQUEST_API_KEY', 'longAPIstring1233');`
+1. Go to Settings>General and scroll down to find where to save your API key 
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently asked questions ==
