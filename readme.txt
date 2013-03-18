@@ -103,6 +103,8 @@ We have some more plugins in the pipeline at http://llocally.com
 * added images to readme
 = 1.001b =
 * readme changes 
+= 1.002 =
+* allow setting spage =
 
 == Upgrade notice ==
 
