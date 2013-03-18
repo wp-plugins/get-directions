@@ -140,7 +140,7 @@ function mapquest_api_set_notice() {
     $bizoptions = get_option('ll_bizprofile');
 	if (empty($bizoptions['api_key']))  {
 	    if ($bizoptions['installed']!=true) {    // only warn if stand alone   leave warning to bizprofile if it is installed
-		   $link='<a href="wp-admin/options-general.php">general settings</a>';
+		   $link='<a href="options-general.php">general settings</a>';
 			echo '<div class="error admin-panel-tips">';
 			printf(__('You need to update your MapQuest API key in the %s or your maps will not work'),$link);
 			echo "</div>"; 
