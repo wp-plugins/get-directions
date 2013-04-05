@@ -100,21 +100,9 @@ This happens sometimes when your zoom level is too high for your radius crcle to
 We have some more plugins in the pipeline at http://llocally.com
 
 == Screenshots ==
-=On Desktop=
-Automatically picks up the users location through the browser (once allowed).
-Provides Printable driving directions to the set location
-Users can edit their location easily by dragging the pin in the interactive map
-1. Map showing route for desktops
-=On Mobile=
-Automatically detects when being used on mobile devices
-One ‘press’ Get Directions button
-Users get directions to the set location through installed map apps on the device
-Easy Navigation on the go 
-Optional setting to hide the map totally on mobile, just having a button
-2. Map showing button to integrate to mobile device maps
-=Settings=
-Widget configuration for sidebars as well as shortcode
-3. Widget
+1. On Desktop. Automatically picks up the users location through the browser once allowed.Provides Printable driving directions to the set location. Users can edit their location easily by dragging the pin in the interactive map
+2. On Mobile. Automatically detects when being used on mobile devices. One press Get Directions button. Users get directions to the set location through installed map apps on the device. Easy Navigation on the go. Optional setting to hide the map totally on mobile, just having a button
+3. Widget configuration for sidebars as well as shortcode
 
 == Changelog ==
 
