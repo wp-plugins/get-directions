@@ -4,12 +4,16 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: MapQuest, Maps, Responsive, Directions
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 1.002
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Get Directions is a flexible, responsive map plugin , that uses MapQuest. Widget and shortcodes that auto detect mobiles.
+Get Directions is a responsive map plugin powered by MapQuest. Widget and shortcodes that auto detect mobiles.
 == Description ==
+* Free
+* Simple WordPress install
+* Works on both Desktop and Mobile devices
+* Responsive
 
 The most comprehensive way for customers to get directions to your shop, office or location with ease on desktop, mobile & responsive themes 
 
@@ -43,6 +47,10 @@ if a postcode/zipcode is used then country is also mandatory
 
 The route will be displayed if the browser permits providing the users location, however is you want to permanently turn off directions set
 hideroute='yes'
+
+Specify an operating radius, which draws an opaque circle based on your location
+radius='12MI'      for 12 miles
+radius='12KM'       for 12 Kilometres
 
 Specify the map image height ( default = 300px)
 height='400px'
@@ -86,13 +94,26 @@ the button is totally styled in CSS so you can change this as you like in your t
 yes you can modify the source under the GPL, however for a very small donation we can tell how you to turn off the link without coding
 = can I change the style of the map pointer? =
 for the route pointers (A to B) the style is fixed, but for the single map pin you can change these. There is a filter hook that can be coded in your theme's functions.php
+= My operating radius circle isn't a circle?
+This happens sometimes when your zoom level is too high for your radius crcle to fite, try a different zoom level to get your circle inside the map
 = Do you have other plugins? =
 We have some more plugins in the pipeline at http://llocally.com
 
 == Screenshots ==
-
+=On Desktop=
+Automatically picks up the users location through the browser (once allowed).
+Provides Printable driving directions to the set location
+Users can edit their location easily by dragging the pin in the interactive map
 1. Map showing route for desktops
+=On Mobile=
+Automatically detects when being used on mobile devices
+One ‘press’ Get Directions button
+Users get directions to the set location through installed map apps on the device
+Easy Navigation on the go 
+Optional setting to hide the map totally on mobile, just having a button
 2. Map showing button to integrate to mobile device maps
+=Settings=
+Widget configuration for sidebars as well as shortcode
 3. Widget
 
 == Changelog ==
@@ -105,6 +126,10 @@ We have some more plugins in the pipeline at http://llocally.com
 * readme changes 
 = 1.002 =
 * allow setting spage =
+= 1.1 =
+* fixed bug where browser asking for location when no route required
+* added feature to optionally show or hide map on mobile devices - leaving just the button
+* added new feature to display a radius area to the short code
 
 == Upgrade notice ==
 

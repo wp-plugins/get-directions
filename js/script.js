@@ -24,11 +24,12 @@
         GDmap = new MQA.TileMap(findusoptions); 
 
 
-         MQA.withModule('smallzoom','largezoom','viewoptions','mousewheel','directions', function() {
-			navigator.geolocation.getCurrentPosition(function(position) {
+         MQA.withModule('shapes','smallzoom','largezoom','viewoptions','mousewheel','directions', function() {
+			
 			
 				icon=new MQA.Icon(gdiconpath,gdiconwidth,gdiconheight);
 				if (gdshowroute=='1') {
+				  navigator.geolocation.getCurrentPosition(function(position) {
 					GDmap.addRoute([
 						{latLng: {lat: position.coords.latitude, lng: position.coords.longitude}},
 						{latLng:{lat:gdstartlat,lng:gdstartlong}}],
@@ -39,6 +40,7 @@
 						/*Add the callback function to the route call.*/
 						displayGDNarrative
 						);
+				  },showError);
 				} else {
 
 					p=new MQA.Poi({lat:gdstartlat,lng:gdstartlong});
@@ -61,15 +63,22 @@
 						new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
 						);
 				}
-
+				if (gdradiusint!=0) {
+                   var circle = new MQA.CircleOverlay(); 
+				   circle.radiusUnit=gdradiusunits;
+				   circle.radius=gdradiusint;
+				   circle.shapePoints=[gdstartlat, gdstartlong];
+				   GDmap.addShape(circle);
+				}
+				
 				GDmap.addControl(new MQA.ViewOptions());
 
 				GDmap.enableMouseWheelZoom();
 				
 				GDmap.setLogoPlacement(MQA.MapLogo.MAPQUEST,new MQA.MapCornerPlacement(MQA.MapCorner.BOTTOM_RIGHT,new MQA.Size(10,50)));
 				GDmap.setLogoPlacement(MQA.MapLogo.SCALES,new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT,new MQA.Size(10000,10000)));
-			}, 
-			function (error){
+			
+			function showError(error){
 				switch(error.code) 
 					{
 						case error.PERMISSION_DENIED:
@@ -87,7 +96,7 @@
 					}
 				}
 			
-			);
+			
 		  });
 		  
 		  } 

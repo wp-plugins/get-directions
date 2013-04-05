@@ -2,8 +2,8 @@
 /*
 Plugin Name: getDirections
 Plugin URI: http://llocally.com/wordpress-plugins/get-directions
-Description: getDirections knows when your site is being viewed on a mobile or desktop. When it is on a desktop if displays a map and directions, when it is viewed on a mobile it passes the co-ordinates through to the mobiles google maps so the mobile can be used for bnavifgation. the direction map can be utilised through a shortcode or widget.
-Version: 1.002
+Description: Get Directions knows when your site is being viewed on a mobile or desktop. When it is on a desktop if displays a map and directions, when it is viewed on a mobile it passes the co-ordinates through to the mobiles google maps so the mobile can be used for bnavifgation. the direction map can be utilised through a shortcode or widget.
+Version: 1.1
 Author: llocally
 Author URI: http://llocally.com/wordpress-plugins/
 License: GPLv2 or later
@@ -58,8 +58,14 @@ function getdirections_admin_styles() {
 
 $bizoptions=get_option('ll_bizprofile');    // find bizprofile settings
 if (defined('MAPQUEST_LLOCALLY_BRANDING')) {
-   $bizoptions['branding']=LLOCALLY_PLUGIN_BRANDING;
+   $bizoptions['branding']=MAPQUEST_LLOCALLY_BRANDING;
    update_option('ll_bizprofile',$bizoptions);
+   }
+   
+   
+if (defined('GETDIRECTIONS_HIDEMOBILE_MAP')) {
+   $bizoptions['hidemobile']=GETDIRECTIONS_HIDEMOBILE_MAP;
+   update_option('hidemobile',$bizoptions);
    }
 if (defined('MAPQUEST_API_KEY')) {
    $bizoptions['api_key']=MAPQUEST_API_KEY;
@@ -106,6 +112,23 @@ if (!function_exists('ll_bizprofile_func')) {  // allow for possible mapquest ap
 			<span>
 				<?php
 				_e("Enter your MapQuest API key here", "llgetdirections");
+				?>
+			</span>
+		</label>
+		<br />
+		<label class="hidemap">
+		
+		    <input type="radio" name="ll_bizprofile[hidemobile]" value="1" <?php checked( $options['hidemobile'], 1 ); ?> />
+			<span>
+				<?php
+				_e("Hide or ", "llgetdirections");
+				?>
+			</span>
+			<input type="radio" name="ll_bizprofile[hidemobile]" value="0" <?php checked( $options['hidemobile'], 0 ); ?> />
+		
+			<span>
+				<?php
+				_e(" show map on mobile devices", "llgetdirections");
 				?>
 			</span>
 		</label>
@@ -161,7 +184,8 @@ extract(shortcode_atts(array(
 	'zoom' => '',
 	'controls' => '',
 	'rotitle'=>'',
-	'rocontent'=>''
+	'rocontent'=>'',
+	'radius'=>''
   ), $atts));
 
 global $bizoptions;
@@ -174,6 +198,11 @@ global $bizoptions;
 
 		$postcode = preg_replace('/\s+/', '', $postcode); // strip whitespace
 		$country = preg_replace('/\s+/', '', $country);
+		$radius = preg_replace('/\s+/', '', $radius);
+		$radiusint = preg_replace("/\D/", "", $radius);
+		$radiusunits='MI';
+		if (preg_match('/KM/i', $radius) ) $radiusunits='KM';
+		
 		
 		$posarray = explode(',',$latlong);
      
@@ -216,29 +245,34 @@ global $bizoptions;
 	if (empty($controls)) $controls=(empty($bizoptions['option_filed_mapcontrols']))?'largezoom':$bizoptions['option_filed_mapcontrols'];
 	
 	
-	return ll_render_directions ($posarray[0], $posarray[1], $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, 'get-directions-map-sc');
+	return ll_render_directions ($posarray[0], $posarray[1], $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, 'get-directions-map-sc', $radiusint, $radiusunits);
 
 }
 
 //------------------------ Render Route Map -----------------------------//
-function ll_render_directions( $lat, $lng, $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, $mapid  ) {
+function ll_render_directions( $lat, $lng, $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, $mapid, $radiusint=0, $radiusunits=""  ) {
 	if (ll_is_mobile()) {
 // force a pin only map	with 100% width
-	    $html = ll_render_map( $lat, $lng, 0, $height, '', $zoom, $controls, $rotitle, $rocontent, $mapid  );
+global $bizoptions;
+
+	    if (empty($bizoptions['hidemobile'])) $html = ll_render_map( $lat, $lng, 0, $height, '', $zoom, $controls, $rotitle, $rocontent, $mapid , $radiusint, $radiusunits );
 		$html .= '<form  class="gdform" action="http://maps.google.com/" method="get">';
 		$html .= '<input type="hidden" name="daddr"value="'.$lat.','.$lng.'" />';
-		$html .= '<button class="gdbutton" type="submit">getDirections</button>';
+		$html .= '<button class="gdbutton" type="submit">Get Directions</button>';
 		$html .= '</form>';
 
         } else {	
      //  ok do a route or pin map
-	    $html = ll_render_map( $lat, $lng, $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, $mapid  );
+	    $html = ll_render_map( $lat, $lng, $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, $mapid , $radiusint, $radiusunits );
 	 }
 	 return $html;
 }
 
-function ll_render_map( $lat, $lng, $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, $mapid  ) 		{
+function ll_render_map( $lat, $lng, $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, $mapid, $radiusint, $radiusunits  ) 		{
 global $bizoptions;
+           if (empty($radiusint)) $radiusint=0;
+
+
 		    $icon['path'] = plugins_url('images/map-pin.png', __FILE__);
 		    $icon['width'] =18;
 			$icon['height'] =26;
@@ -257,6 +291,8 @@ global $bizoptions;
 			$html .= "var gdiconpath='".$icon['path']."';";
 			$html .= "var gdiconwidth=".$icon['width'].";";
 			$html .= "var gdiconheight=".$icon['height'].";";
+			$html .= "var gdradiusunits='".$radiusunits."';";
+			$html .= 'var gdradiusint='.$radiusint.';';
 			
 			
 			$html .= "</script>";
