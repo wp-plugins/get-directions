@@ -27,12 +27,13 @@ Questions? Try our facebook page https://www.facebook.com/llocally
 == Installation ==
 
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-1. Get a  free MapQuest API key from [http://developer.mapquest.com/web/products/open](http://developer.mapquest.com/web/products/open)
+1. Get a free MapQuest API AppKey from [http://developer.mapquest.com](http://developer.mapquest.com) if you need further instrauctions on obtaining the key we created a short video here [http://llocally.com/blog/2013/04/11/1476/] (http://llocally.com/blog/2013/04/11/1476/)
 1. Go to Settings>General and scroll down to find where to save your API key
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently asked questions ==
-
+= how do I get the fre API AppKey =
+You get the free MapQuest API AppKey from [http://developer.mapquest.com](http://developer.mapquest.com) if you need further instrauctions on obtaining the key we created a short video here [http://llocally.com/blog/2013/04/11/1476/] (http://llocally.com/blog/2013/04/11/1476/)
 = how do I use the shortcode =
 to display a map on the page use the short code
 [get-directions] with the appropriate parameters
