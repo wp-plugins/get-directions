@@ -32,9 +32,9 @@ Questions? Try our facebook page https://www.facebook.com/llocally
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently asked questions ==
-= how do I get the fre API AppKey =
+= how do I get the fre API AppKey? =
 You get the free MapQuest API AppKey from [http://developer.mapquest.com](http://developer.mapquest.com) if you need further instrauctions on obtaining the key we created a short video here [http://llocally.com/blog/2013/04/11/1476/] (http://llocally.com/blog/2013/04/11/1476/)
-= how do I use the shortcode =
+= how do I use the shortcode? =
 to display a map on the page use the short code
 [get-directions] with the appropriate parameters
 
