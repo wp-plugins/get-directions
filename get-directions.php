@@ -3,7 +3,7 @@
 Plugin Name: getDirections
 Plugin URI: http://llocally.com/wordpress-plugins/get-directions
 Description: Get Directions knows when your site is being viewed on a mobile or desktop. When it is on a desktop if displays a map and directions, when it is viewed on a mobile it passes the co-ordinates through to the mobiles google maps so the mobile can be used for bnavifgation. the direction map can be utilised through a shortcode or widget.
-Version: 1.1
+Version: 1.2
 Author: llocally
 Author URI: http://llocally.com/wordpress-plugins/
 License: GPLv2 or later
@@ -71,105 +71,15 @@ if (defined('MAPQUEST_API_KEY')) {
    $bizoptions['api_key']=MAPQUEST_API_KEY;
    update_option('ll_bizprofile',$bizoptions);
 } else {
-   if ( is_admin() ) {
-       if (empty($bizoptions['installed'])) {  // only install  the mapquest key questions into general options if bizprofile is not installed
-          add_action('admin_init', 'llocally_set_mapquest_api_key');
-		  }
-	   }
+   $bizoptions['api_key']="Fmjtd%7Cluub2g6b2g%2Crw%3Do5-9ualqu";
+   update_option('ll_bizprofile',$bizoptions);
 }
 
-
-if (!function_exists('llocally_set_mapquest_api_key')) {
-   function llocally_set_mapquest_api_key() {
-		register_setting( 'general', 'll_bizprofile');
-		add_settings_section(
-		'mapquest', // Unique identifier for the settings section
-		__('get-directions Plugin Settings','llgetdirections'), // Section title (we don't want one)
-		'__return_false', // Section callback (we don't want anything)
-		'general' // Menu slug, used to uniquely identify the page; see canvas_theme_options_add_page()
-	);
-		add_settings_field( 'll_bizprofile_id',
-			'Mapquest API Key',
-			'll_bizprofile_func',
-			'general',
-			'mapquest'
-		);	
-   }
-}
 // end of initial processes ----------------------------------------------
 
-// settings page render for standalone plugin
-
-if (!function_exists('ll_bizprofile_func')) {  // allow for possible mapquest api setup from other standalone plugins or bizprofile pluginfrom llocally
-   function ll_bizprofile_func() {
-      $options = get_option('ll_bizprofile');
-		?>
-		<div class="">
-		<label class="description">
-			<input type="text" name="ll_bizprofile[api_key]" 
-			id="ll_bizprofile[api_key]"
-			value ="<?php if ( !empty($options['api_key']) ){ echo stripslashes($options['api_key']); }  ?>"/>
-			<span>
-				<?php
-				_e("Enter your MapQuest API key here", "llgetdirections");
-				?>
-			</span>
-		</label>
-		<br />
-		<label class="hidemap">
-		
-		    <input type="radio" name="ll_bizprofile[hidemobile]" value="1" <?php checked( $options['hidemobile'], 1 ); ?> />
-			<span>
-				<?php
-				_e("Hide or ", "llgetdirections");
-				?>
-			</span>
-			<input type="radio" name="ll_bizprofile[hidemobile]" value="0" <?php checked( $options['hidemobile'], 0 ); ?> />
-		
-			<span>
-				<?php
-				_e(" show map on mobile devices", "llgetdirections");
-				?>
-			</span>
-		</label>
-		<br />
-		<p>
-		<?php
-				_e("Buy the premium <a href='http://llocally.com/wordpress-plugins' target='_blank'>Business Profile plugin</a> and get support for this plugin too and remove the donate button and branding<br>otherwise please donate genorously if you found this plugin useful", "llgetdirections");
-				?>
-		</p>
-		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZEWW5LKK5995J" target="_blank">
-		<img src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" alt="PayPal — The safer, easier way to pay online." />
-		</a>
-
-
-		
-		</div>
-		<hr>
-		
-	
-		<?php
-	}
-}
 //     end of settings  -----------------------
 
 
-
-
-//------------------------------------------------------------------------//
-//--- notices if not fully setup--------------------------------------------//
-//------------------------------------------------------------------------//
-function mapquest_api_set_notice() {
-    $bizoptions = get_option('ll_bizprofile');
-	if (empty($bizoptions['api_key']))  {
-	    if ($bizoptions['installed']!=true) {    // only warn if stand alone   leave warning to bizprofile if it is installed
-		   $link='<a href="options-general.php">general settings</a>';
-			echo '<div class="error admin-panel-tips">';
-			printf(__('You need to update your MapQuest API key in the %s or your maps will not work'),$link);
-			echo "</div>"; 
-			}
-    }
-}	
 
 // do all the get-directions shortcode processes ---------------------------------//
 function getdirections_render( $atts, $content = null ){
@@ -380,7 +290,7 @@ class getdirections extends WP_Widget {
 		parent::__construct(
 	 		'getdirections', // Base ID
 			'getDirections', // Name
-			array( 'description' => __( 'getDirections displays a map with a route to your business. It knows when your site is being viewed on a mobile or desktop.', 'text_domain' ), ) // Args
+			array( 'description' => __( 'Get Directions displays a map with a route to your business. It knows when your site is being viewed on a mobile or desktop.', 'text_domain' ), ) // Args
 		);
 	}
 

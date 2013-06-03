@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: MapQuest, Maps, Responsive, Directions
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,13 +27,10 @@ Questions? Try our facebook page https://www.facebook.com/llocally
 == Installation ==
 
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-1. Get a free MapQuest API AppKey from http://developer.mapquest.com if you need further instrauctions on obtaining the key we created a short video here http://llocally.com/blog/2013/04/11/1476/
-1. Go to Settings>General and scroll down to find where to save your API key
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently asked questions ==
-= how do I get the fre API AppKey? =
-You get the free MapQuest API AppKey from http://developer.mapquest.com if you need further instrauctions on obtaining the key we created a short video here http://llocally.com/blog/2013/04/11/1476/
+
 = how do I use the shortcode? =
 to display a map on the page use the short code
 [get-directions] with the appropriate parameters
@@ -119,6 +116,9 @@ We have some more plugins in the pipeline at http://llocally.com
 * fixed bug where browser asking for location when no route required
 * added feature to optionally show or hide map on mobile devices - leaving just the button
 * added new feature to display a radius area to the short code
+= 1.2 =
+* removed the need for new users to get an API key from mapquest, you can still use your own Mapquest API key if you like add
+define( 'MAPQUEST_API_KEY', 'your long api key here' ); to your wp-config.php file
 
 == Upgrade notice ==
 
