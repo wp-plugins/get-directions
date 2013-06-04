@@ -3,7 +3,7 @@
 Plugin Name: getDirections
 Plugin URI: http://llocally.com/wordpress-plugins/get-directions
 Description: Get Directions knows when your site is being viewed on a mobile or desktop. When it is on a desktop if displays a map and directions, when it is viewed on a mobile it passes the co-ordinates through to the mobiles google maps so the mobile can be used for bnavifgation. the direction map can be utilised through a shortcode or widget.
-Version: 1.2
+Version: 1.21
 Author: llocally
 Author URI: http://llocally.com/wordpress-plugins/
 License: GPLv2 or later
@@ -44,7 +44,6 @@ add_shortcode( 'get-directions', 'getdirections_render' );
 
 //
 if ( is_admin() ){ // admin actions
-	add_action('admin_notices', 'mapquest_api_set_notice'); // need to warning if the key is not set up
 	add_action( 'admin_print_styles', 'getdirections_admin_styles' );  // add javascipt for admin 
 	}
 	

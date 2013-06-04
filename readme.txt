@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: MapQuest, Maps, Responsive, Directions
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 1.2
+Stable tag: 1.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -119,6 +119,8 @@ We have some more plugins in the pipeline at http://llocally.com
 = 1.2 =
 * removed the need for new users to get an API key from mapquest, you can still use your own Mapquest API key if you like add
 define( 'MAPQUEST_API_KEY', 'your long api key here' ); to your wp-config.php file
+= 1.21 =
+* minor fix to remove warning message
 
 == Upgrade notice ==
 
