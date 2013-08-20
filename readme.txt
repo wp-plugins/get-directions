@@ -3,7 +3,7 @@ Contributors: llocally
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZEWW5LKK5995J
 Tags: MapQuest, Maps, Responsive, Directions
 Requires at least: 3.4
-Tested up to: 3.5.1
+Tested up to: 3.6
 Stable tag: 1.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
