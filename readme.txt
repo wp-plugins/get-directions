@@ -120,7 +120,7 @@ define( 'MAPQUEST_API_KEY', 'your long api key here' ); to your wp-config.php fi
 = 1.21 =
 * minor fix to remove warning message
 = 1.22 =
-Remove credit link to llocally, cause no one likes those
+* Remove credit link to llocally, cause no one likes those
 
 == Upgrade notice ==
 
