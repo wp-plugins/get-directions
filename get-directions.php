@@ -53,13 +53,7 @@ function getdirections_admin_styles() {
 	wp_enqueue_script( 'getdirectionadminScripts',array('jquery') );
 }  
 //
-// check to see if key is defined in WP Config otherwise add to general settings
 
-$bizoptions=get_option('ll_bizprofile');    // find bizprofile settings
-if (defined('MAPQUEST_LLOCALLY_BRANDING')) {
-   $bizoptions['branding']=MAPQUEST_LLOCALLY_BRANDING;
-   update_option('ll_bizprofile',$bizoptions);
-   }
    
    
 if (defined('GETDIRECTIONS_HIDEMOBILE_MAP')) {
@@ -215,9 +209,7 @@ global $bizoptions;
             if (!empty($height)) $html .= 'height:'.$height.'px; ';
 			if (!empty($width)) $html .= 'width:'.$width.'px; ';
 			$html .= '"></div>';
-			if (!$bizoptions['branding']) { 
-		       $html .= '<div class="gdbranding" class="ll_branding">a <a href="http://llocally.com/wordpress-plugins" rel="no_follow" target="_blank">llocally</a> plugin</div>';
-		     }
+			
 			$html .= '</div>';
 			if ($showroute=='1') {  // check if route needs to be shown ok do a table
 				$html .= '<div class="gdroute" id="'.$mapid.'-route" style="';

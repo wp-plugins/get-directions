@@ -3,8 +3,8 @@ Contributors: llocally
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZEWW5LKK5995J
 Tags: MapQuest, Maps, Responsive, Directions
 Requires at least: 3.4
-Tested up to: 3.5.1
-Stable tag: 1.21
+Tested up to: 3.6
+Stable tag: 1.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,8 +88,6 @@ this feature is not yet available
 Currently only 1 marker can be used on a non-route map
 = how do I change the color and size of the 'get directions' button? =
 the button is totally styled in CSS so you can change this as you like in your theme's style.css
-= can I remove the credit link to llocally displayed under the maps? =
-yes you can modify the source under the GPL, however for a very small donation we can tell how you to turn off the link without coding
 = can I change the style of the map pointer? =
 for the route pointers (A to B) the style is fixed, but for the single map pin you can change these. There is a filter hook that can be coded in your theme's functions.php
 = My operating radius circle isn't a circle?
@@ -121,6 +119,8 @@ We have some more plugins in the pipeline at http://llocally.com
 define( 'MAPQUEST_API_KEY', 'your long api key here' ); to your wp-config.php file
 = 1.21 =
 * minor fix to remove warning message
+= 1.22 =
+Remove credit link to llocally, cause no one likes those
 
 == Upgrade notice ==
 
