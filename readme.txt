@@ -36,6 +36,7 @@ to display a map on the page use the short code
 [get-directions] with the appropriate parameters
 
 A destination is mandatory and may be specified preferably as a latitude / longitude pair
+(take care - in the current version extra spaces in the latlong value can cause issues)
 e.g.    latlong='51.36887,-0.408999'
 or can be based on postcode/zipcode & country
 e.g.    postcode='SW1W 0NT'  country='UK'
@@ -55,6 +56,9 @@ height='400px'
 
 Specify the map width ( default full width - 100%)
 width='500px'
+(please note: the px are mandatory in this field and cannot be replaced by % in this version
+in responsive theme a fixed px width is not recommended, if you want to reduce the width to a % you are advised to use CSS on the appropriate elements.)
+
 
 Specify the initial zoom level (1-16) (default 12)
 zoom='10'
