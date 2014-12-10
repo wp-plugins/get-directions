@@ -1,10 +1,10 @@
 === Get Directions ===
-Contributors: llocally
+Contributors: Locally Digital Ltd
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZEWW5LKK5995J
 Tags: MapQuest, Maps, Responsive, Directions
 Requires at least: 3.4
-Tested up to: 3.7
-Stable tag: 1.22
+Tested up to: 4.0.1
+Stable tag: 1.23
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,25 +102,27 @@ We have some more plugins in the pipeline at http://llocally.com
 
 == Changelog ==
 
-= 1.0 =
-*  added readme.txt   
-= 1.001a =
-* added images to readme
-= 1.001b =
-* readme changes 
-= 1.002 =
-* allow setting spage =
+= 1.23 =
+* Important, geocoding by postcode is no longer supported in the shortcode, only use lat / long. Change your shortcodes if using postcode before upgrading. Changed calls to MapQuest Open rather than MapQuest Community as MapQuest is removing this as of 31 Dec 2014, so earlier versions of this plugin may not work after 1 Jan 2015
+= 1.22 =
+* Remove credit link to llocally, cause no one likes those
+= 1.21 =
+* minor fix to remove warning message
+= 1.2 =
+* removed the need for new users to get an API key from mapquest, you can still use your own Mapquest API key if you like add
+define( 'MAPQUEST_API_KEY', 'your long api key here' ); to your wp-config.php file
 = 1.1 =
 * fixed bug where browser asking for location when no route required
 * added feature to optionally show or hide map on mobile devices - leaving just the button
 * added new feature to display a radius area to the short code
-= 1.2 =
-* removed the need for new users to get an API key from mapquest, you can still use your own Mapquest API key if you like add
-define( 'MAPQUEST_API_KEY', 'your long api key here' ); to your wp-config.php file
-= 1.21 =
-* minor fix to remove warning message
-= 1.22 =
-* Remove credit link to llocally, cause no one likes those
+= 1.002 =
+* allow setting spage =
+= 1.001b =
+* readme changes 
+= 1.001a =
+* added images to readme
+= 1.0 =
+*  added readme.txt 
 
 == Upgrade notice ==
 

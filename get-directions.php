@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: getDirections
-Plugin URI: http://llocally.com/wordpress-plugins/get-directions
+Plugin URI: http://locally.uk/wordpress-plugins/get-directions/
 Description: Get Directions knows when your site is being viewed on a mobile or desktop. When it is on a desktop if displays a map and directions, when it is viewed on a mobile it passes the co-ordinates through to the mobiles google maps so the mobile can be used for bnavifgation. the direction map can be utilised through a shortcode or widget.
-Version: 1.22
-Author: llocally
-Author URI: http://llocally.com/wordpress-plugins/
+Version: 1.23
+Author: Locally Digital Ltd
+Author URI: http://locally.uk/
 License: GPLv2 or later
 */
 
@@ -109,26 +109,10 @@ global $bizoptions;
 		
 		$posarray = explode(',',$latlong);
      
-		if (!empty($postcode)) {   // so we want to geo code end location
-		    if (empty($country)) {
-			   $html=_e('get-directions shortcode: Error: Country must be specified if post code is specified - see documentation!','llgetdirections');
-			} else  {
-			$url = "http://www.mapquestapi.com/geocoding/v1/address?key=" . $bizoptions['api_key'] . "&inFormat=kvp&outFormat=json&postalCode=" . $postcode . "&country=". $country ."&maxResults=1";
-		    $georesponse = file_get_contents($url);
-
-			$mapdata = json_decode($georesponse);
-
-			if ($mapdata->info->statuscode!=0)  {
-			   foreach ($mapdata->info->messages as $message)   {
-			       _e('get-directions shortcode: Error: geoencoding:','llgetdirections');
-			       echo $message . "<br>";
-				   }
-			   }
-			if ($mapdata->results[0]->locations[0]->geocodeQuality=='COUNTRY') _e('get-directions shortcode: Error: Your postcode was not found, try latitude and longtitude for a more accurate position','llgetdirections');
-			$posarray[0]=$mapdata->results[0]->locations[0]->latLng->lat;
-			$posarray[1]=$mapdata->results[0]->locations[0]->latLng->lng;
-
-			}
+		if ((!empty($postcode)) || (!empty($country))) {   // so we want to geo code end location
+		    
+			   $html=_e('get-directions shortcode: Error: Postcode Country no longer supported - use lat long','llgetdirections');
+			
 		}
 	// if over riding end point not provided, check to see if there is some in bizprofile, otherwise error
 	if (empty($rotitle)) $rotitle=ll_format_rotitle($bizoptions);
@@ -241,7 +225,6 @@ function ll_format_rocontent($options) {  //format output for title when click o
 	  $html .= (empty($options['option_field_bizphone']))?"":'<p class="gdwp">'.__('Phone    :','getdirections'). $options['option_field_bizphone']."</p>";
 
 
-
       return $html;
 
 }
@@ -259,7 +242,7 @@ global $bizoptions;
         wp_register_style( 'GDwidgetStylesheet', plugins_url('css/style.css', __FILE__) );
 	    wp_register_style( 'GDprintStylesheet', plugins_url('css/print.css', __FILE__),'','','print' );
 /* Register our script. */
-        wp_register_script( 'bizprofileMapQuestScript','http://www.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key='.$bizoptions['api_key']);
+        wp_register_script( 'bizprofileMapQuestScript','http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key='.$bizoptions['api_key']);
         wp_register_script( 'GDwidgetScript', plugins_url('js/script.js', __FILE__) );
 		wp_enqueue_style( 'GDwidgetStylesheet' );
 		wp_enqueue_style( 'GDprintStylesheet' );
