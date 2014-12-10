@@ -35,11 +35,9 @@ Questions? Try our facebook page https://www.facebook.com/llocally
 to display a map on the page use the short code
 [get-directions] with the appropriate parameters
 
-A destination is mandatory and may be specified preferably as a latitude / longitude pair
+A destination is mandatory and is set as a latitude / longitude pair
 e.g.    latlong='51.36887,-0.408999'
-or can be based on postcode/zipcode & country
-e.g.    postcode='SW1W 0NT'  country='UK'
-if a postcode/zipcode is used then country is also mandatory
+
 
 *Optional*
 
@@ -76,8 +74,6 @@ rocontent='My Address'   (default = none)
 Show directions to latitude 40.74802 longtitude -73.98512
 [get-directions latlong='40.748021,-73.98512']
 
-Get directions to zipcode 10118 in the USA
-[get-directions postcode='10118' country='USA']
 
 Show a simple map without a route, with marker with some details
 [get-directions latlong='40.748021,-73.98512' hideroute='yes' rotitle='Empire State Building' roicontent='Empire State Building, 10118, NY, NY, USA]
