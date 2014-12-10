@@ -35,9 +35,8 @@ Questions? Try our facebook page https://www.facebook.com/llocally
 to display a map on the page use the short code
 [get-directions] with the appropriate parameters
 
-A destination is mandatory and may be specified preferably as a latitude / longitude pair
+A destination is mandatory and is specified as a latitude / longitude pair
 e.g.    latlong='51.36887,-0.408999'
-or can be based on postcode/zipcode & country
 
 *Optional*
 
