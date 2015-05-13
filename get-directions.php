@@ -3,7 +3,7 @@
 Plugin Name: getDirections
 Plugin URI: http://locally.uk/wordpress-plugins/get-directions/
 Description: Get Directions knows when your site is being viewed on a mobile or desktop. When it is on a desktop if displays a map and directions, when it is viewed on a mobile it passes the co-ordinates through to the mobiles google maps so the mobile can be used for bnavifgation. the direction map can be utilised through a shortcode or widget.
-Version: 1.23
+Version: 1.24
 Author: Locally Digital Ltd
 Author URI: http://locally.uk/
 License: GPLv2 or later
@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 //error_reporting(E_ALL);
-//ini_set('display_errors', '1'); 
+//ini_set('display_errors', '1');
 
 //------------------------------------------------------------------------//
 //---Config---------------------------------------------------------------//
@@ -44,18 +44,18 @@ add_shortcode( 'get-directions', 'getdirections_render' );
 
 //
 if ( is_admin() ){ // admin actions
-	add_action( 'admin_print_styles', 'getdirections_admin_styles' );  // add javascipt for admin 
+	add_action( 'admin_print_styles', 'getdirections_admin_styles' );  // add javascipt for admin
 	}
-	
+
 
 function getdirections_admin_styles() {
 	wp_register_script( 'getdirectionadminScripts', plugins_url('js/admin-script.js', __FILE__) );
 	wp_enqueue_script( 'getdirectionadminScripts',array('jquery') );
-}  
+}
 //
 
-   
-   
+
+
 if (defined('GETDIRECTIONS_HIDEMOBILE_MAP')) {
    $bizoptions['hidemobile']=GETDIRECTIONS_HIDEMOBILE_MAP;
    update_option('hidemobile',$bizoptions);
@@ -94,7 +94,7 @@ extract(shortcode_atts(array(
 global $bizoptions;
 // map will auto zoom to route but we still have zoom option incase route not shown
         $html="";
-		
+
         $height = preg_replace("/\D/", "", $height);  // only numbers
 		$width = preg_replace("/\D/", "", $width);
 		$zoom = preg_replace("/\D/", "", $zoom);
@@ -105,19 +105,19 @@ global $bizoptions;
 		$radiusint = preg_replace("/\D/", "", $radius);
 		$radiusunits='MI';
 		if (preg_match('/KM/i', $radius) ) $radiusunits='KM';
-		
-		
+
+
 		$posarray = explode(',',$latlong);
-     
+
 		if ((!empty($postcode)) || (!empty($country))) {   // so we want to geo code end location
-		    
+
 			   $html=_e('get-directions shortcode: Error: Postcode Country no longer supported - use lat long','llgetdirections');
-			
+
 		}
 	// if over riding end point not provided, check to see if there is some in bizprofile, otherwise error
 	if (empty($rotitle)) $rotitle=ll_format_rotitle($bizoptions);
 	if (empty($rocontent)) $rocontent=ll_format_rocontent($bizoptions);
-	
+
 	if ( (empty($postcode)) && empty($latlong) ) {
 		if (empty($bizoption['lat']) && empty($bizoption['lng']) ) {
 		   _e('get-directions shortcode: Error: No destination available, please refer to documentation!','llgetdirections');
@@ -125,13 +125,13 @@ global $bizoptions;
 		    $posarray[0]=$bizoption['lat'];
 			$posarray[1]=$bizoption['lng'];
 		}
-	}	
+	}
 	if (empty($hideroute)) $showroute=(empty($bizoptions['option_filed_mapshowroute']))?'1':$bizoptions['option_filed_mapshowroute'];
 	if (empty($height)) $height=(empty($bizoptions['option_filed_mapheight']))?300:$bizoptions['option_filed_mapheight'];
 	if (empty($zoom)) $zoom=(empty($bizoptions['option_filed_mapzoom']))?10:$bizoptions['option_filed_mapzoom'];
 	if (empty($controls)) $controls=(empty($bizoptions['option_filed_mapcontrols']))?'largezoom':$bizoptions['option_filed_mapcontrols'];
-	
-	
+
+
 	return ll_render_directions ($posarray[0], $posarray[1], $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, 'get-directions-map-sc', $radiusint, $radiusunits);
 
 }
@@ -143,12 +143,12 @@ function ll_render_directions( $lat, $lng, $showroute, $height, $width, $zoom, $
 global $bizoptions;
 
 	    if (empty($bizoptions['hidemobile'])) $html = ll_render_map( $lat, $lng, 0, $height, '', $zoom, $controls, $rotitle, $rocontent, $mapid , $radiusint, $radiusunits );
-		$html .= '<form  class="gdform" action="http://maps.google.com/" method="get">';
+		$html .= '<form  class="gdform" action="//maps.google.com/" method="get">';
 		$html .= '<input type="hidden" name="daddr"value="'.$lat.','.$lng.'" />';
 		$html .= '<button class="gdbutton" type="submit">Get Directions</button>';
 		$html .= '</form>';
 
-        } else {	
+        } else {
      //  ok do a route or pin map
 	    $html = ll_render_map( $lat, $lng, $showroute, $height, $width, $zoom, $controls, $rotitle, $rocontent, $mapid , $radiusint, $radiusunits );
 	 }
@@ -164,9 +164,9 @@ global $bizoptions;
 		    $icon['width'] =18;
 			$icon['height'] =26;
 			$icon = apply_filters ('get_directions_map_pin', $icon );
-			
+
 		  	$html = '<script type="text/javascript">';
-		  	
+
 			$html .= 'var gdstartlat='.$lat.';';
 			$html .= 'var gdstartlong='.$lng.';';
 			$html .= "var gdshowroute='".$showroute."';";
@@ -174,26 +174,26 @@ global $bizoptions;
 			$html .= "var gdcontrols='".$controls."';";
 			$html .= "var gdtitle='".addslashes_gpc($rotitle)."';";
 			$html .= "var gdcontent='".addslashes_gpc($rocontent)."';";
-			$html .= "var gdmapid='".$mapid."';"; 
+			$html .= "var gdmapid='".$mapid."';";
 			$html .= "var gdiconpath='".$icon['path']."';";
 			$html .= "var gdiconwidth=".$icon['width'].";";
 			$html .= "var gdiconheight=".$icon['height'].";";
 			$html .= "var gdradiusunits='".$radiusunits."';";
 			$html .= 'var gdradiusint='.$radiusint.';';
-			
-			
+
+
 			$html .= "</script>";
-			
-		
-		
-		
+
+
+
+
 			$html .= '<div ';
 			if (!empty($width)) $html .= 'style="width:'.$width.'px;"';
 			$html .= '><div class="gdmap "id="'.$mapid.'" style="';
             if (!empty($height)) $html .= 'height:'.$height.'px; ';
 			if (!empty($width)) $html .= 'width:'.$width.'px; ';
 			$html .= '"></div>';
-			
+
 			$html .= '</div>';
 			if ($showroute=='1') {  // check if route needs to be shown ok do a table
 				$html .= '<div class="gdroute" id="'.$mapid.'-route" style="';
@@ -202,9 +202,9 @@ global $bizoptions;
 	// put out a printer button for the route
 				$html .= '<input type="image" value="Print" src="'.plugins_url( 'images/printer.png' , __FILE__ ).'" onclick="window.print()" />';
 			}
-		
+
 		return $html;
-	
+
 }
 function ll_format_rotitle($options) {  //format output for title when hovering over map pin
 
@@ -215,7 +215,7 @@ function ll_format_rotitle($options) {  //format output for title when hovering 
 function ll_format_rocontent($options) {  //format output for title when click on map pin
 
 	$html='';
-	  
+
 	  $html .= (empty($options['option_field_bizname']))?"":'<p class="gdwp">'.__('Company  :','getdirections'). $options['option_field_bizname']."</p>";
 	  $html .= (empty($options['option_field_bizbuilding']))?"":'<p class="gdwp">'.__('Building :','getdirections'). $options['option_field_bizbuilding']."</p>";
 	  $html .= (empty($options['option_field_bizstreet']))?"":'<p class="gdwp">'.__('Street   :','getdirections'). $options['option_field_bizstreet']."</p>";
@@ -242,7 +242,7 @@ global $bizoptions;
         wp_register_style( 'GDwidgetStylesheet', plugins_url('css/style.css', __FILE__) );
 	    wp_register_style( 'GDprintStylesheet', plugins_url('css/print.css', __FILE__),'','','print' );
 /* Register our script. */
-        wp_register_script( 'bizprofileMapQuestScript','http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key='.$bizoptions['api_key']);
+        wp_register_script( 'bizprofileMapQuestScript','//open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key='.$bizoptions['api_key']);
         wp_register_script( 'GDwidgetScript', plugins_url('js/script.js', __FILE__) );
 		wp_enqueue_style( 'GDwidgetStylesheet' );
 		wp_enqueue_style( 'GDprintStylesheet' );
@@ -288,14 +288,14 @@ class getdirections extends WP_Widget {
 		$rotitle = $instance['rotitle'];
 		$rocontent = $instance['rocontent'];
 		$height = $instance['height'];
-		
+
 
 		echo $before_widget;
 		if ( ! empty( $title ) )
 			echo $before_title . $title . $after_title;
 		echo ll_render_directions ($posarray[0], $posarray[1], $showroute, $height, '',$zoom, $controls, $rotitle, $rocontent, 'gd-'.$widget_id);
-		
-		echo $after_widget; 
+
+		echo $after_widget;
 	}
 
 	/**
@@ -317,11 +317,11 @@ class getdirections extends WP_Widget {
 		// not width as 100% or as per css for widget
 		$instance['zoom'] = $new_instance['zoom'];
 		$instance['controls'] = $new_instance['controls'];
-		$instance['rotitle'] =  preg_replace('~[[:cntrl:]]~', '', $new_instance['rotitle']); 
+		$instance['rotitle'] =  preg_replace('~[[:cntrl:]]~', '', $new_instance['rotitle']);
 		$instance['rocontent'] =  preg_replace('~[[:cntrl:]]~', '', $new_instance['rocontent']);
 		$instance['bizoptiondefault'] = strip_tags( $new_instance['bizoptiondefault'] );
-		
-		return $instance; 
+
+		return $instance;
 	}
 
 	/**
@@ -334,7 +334,7 @@ class getdirections extends WP_Widget {
 	public function form( $instance ) {
 
         global $bizoptions;
-		
+
 		if ( isset( $instance[ 'title' ] ) ) {
 			$title = $instance[ 'title' ];
 		}
@@ -357,9 +357,9 @@ class getdirections extends WP_Widget {
 		else {
 			if (!empty($bizoptions['installed']))  {
 			    $showroute = (!empty($bizoptions['option_field_mapshowroute']))?$bizoptions['option_field_mapshowroute']:'1';
-			} 
+			}
 		}
-		
+
 		if ( isset( $instance[ 'height' ] ) ) {
 			$height = $instance[ 'height' ];
 		}
@@ -399,21 +399,21 @@ class getdirections extends WP_Widget {
 		else {
 			$bizoptiondefault = (empty($bizoptions['installed']))?false:true;
 		}
-		
+
 		// if biz profile turned on ask if you want to use profile defaults
 		if (!empty($bizoptions['installed'])) {
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'bizoptiondefault' ); ?>"><?php _e( 'Use defaults from business profile?' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'bizoptiondefault' ); ?>"><?php _e( 'Use defaults from business profile?' ); ?></label>
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'bizoptiondefault' ); ?>-true"><?php _e( 'Yes:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'bizoptiondefault' ); ?>-true"><?php _e( 'Yes:' ); ?></label>
 		<input  type='radio' class='usedefault' id='usedefaulttrue'  name="<?php echo $this->get_field_name( 'bizoptiondefault' ); ?>" value='1' <?php checked( $bizoptiondefault, '1' ); ?> />
-		<label for="<?php echo $this->get_field_id( 'bizoptiondefault' ); ?>-false"><?php _e( 'No:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'bizoptiondefault' ); ?>-false"><?php _e( 'No:' ); ?></label>
 		<input  type='radio' class='usedefault' id='usedefaultfalse' name="<?php echo $this->get_field_name( 'bizoptiondefault' ); ?>" value='0' <?php checked( $bizoptiondefault, '0' ); ?> />
 		</p>
 		<?php
-		
+
 		}
 		if (!empty($bizoptiondefault))  {
 			$bizreadonly='readonly';
@@ -426,56 +426,55 @@ class getdirections extends WP_Widget {
 			$rotitle = addslashes_gpc(ll_format_rotitle($bizoptions));
 			$rocontent = addslashes_gpc(ll_format_rocontent($bizoptions));
 			}
-			
+
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'latlng' ); ?>"><?php _e( 'Lat / Long: e.g. 51.23,1.12' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'latlng' ); ?>"><?php _e( 'Lat / Long: e.g. 51.23,1.12' ); ?></label>
 		<input class="defaultinput" <?php echo $bizreadonly; ?> size="8" id="<?php echo $this->get_field_id( 'latlng' ); ?>" name="<?php echo $this->get_field_name( 'latlng' ); ?>" type="text" value="<?php echo esc_attr( $latlng ); ?>" />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'showroute' ); ?>"><?php _e( 'Show directions:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'showroute' ); ?>"><?php _e( 'Show directions:' ); ?></label>
 		<input class="defaultinput" <?php echo $bizdisabled; ?> type="checkbox" id="<?php echo $this->get_field_id( 'showroute' ); ?>" name="<?php echo $this->get_field_name( 'showroute' ); ?>" type="text"  value="1"  <?php checked( $showroute, '1' ); ?> />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _e( 'Map height in px:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _e( 'Map height in px:' ); ?></label>
 		<input class="defaultinput" <?php echo $bizreadonly; ?> type="number" step="1" min="150" max="900" id="<?php echo $this->get_field_id( 'height' ); ?>" name="<?php echo $this->get_field_name( 'height' ); ?>" type="text" value="<?php echo esc_attr( $height ); ?>" />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'controls' ); ?>"><?php _e( 'Show zoom controls?' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'controls' ); ?>"><?php _e( 'Show zoom controls?' ); ?></label>
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'controls' ); ?>"><?php _e( 'Small:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'controls' ); ?>"><?php _e( 'Small:' ); ?></label>
 		<input class="defaultinput" <?php echo $bizdisabled; ?> type="radio" id="<?php echo $this->get_field_id( 'controls' ); ?>" name="<?php echo $this->get_field_name( 'controls' ); ?>" type="text" value="smallzoom" <?php checked( $controls, 'smallzoom' ); ?> />
-		<label for="<?php echo $this->get_field_id( 'controls' ); ?>"><?php _e( 'Large:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'controls' ); ?>"><?php _e( 'Large:' ); ?></label>
 		<input class="defaultinput" <?php echo $bizdisabled; ?> type="radio" id="<?php echo $this->get_field_id( 'controls' ); ?>" name="<?php echo $this->get_field_name( 'controls' ); ?>" type="text" value="largezoom" <?php checked( $controls, 'largezoom' ); ?> />
-		<label for="<?php echo $this->get_field_id( 'controls' ); ?>"><?php _e( 'None:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'controls' ); ?>"><?php _e( 'None:' ); ?></label>
 		<input class="defaultinput" <?php echo $bizdisabled; ?> type="radio" id="<?php echo $this->get_field_id( 'controls' ); ?>" name="<?php echo $this->get_field_name( 'controls' ); ?>" type="text" value="" <?php checked( $controls, '' ); ?> />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'zoom' ); ?>"><?php _e( 'Initial map zoom level 1-16:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'zoom' ); ?>"><?php _e( 'Initial map zoom level 1-16:' ); ?></label>
 		<input class="defaultinput" <?php echo $bizreadonly; ?> type="number" step="1" min="1" max="16" id="<?php echo $this->get_field_id( 'zoom' ); ?>" name="<?php echo $this->get_field_name( 'zoom' ); ?>" type="text" value="<?php echo esc_attr( $zoom ); ?>" />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'rotitle' ); ?>"><?php _e( 'Pin Hover Title' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'rotitle' ); ?>"><?php _e( 'Pin Hover Title' ); ?></label>
 		<input class="defaultinput" <?php echo $bizreadonly; ?> class="widefat" id="<?php echo $this->get_field_id( 'rotitle' ); ?>" name="<?php echo $this->get_field_name( 'rotitle' ); ?>" type="text" value="<?php echo esc_attr( $rotitle ); ?>" />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'roontent' ); ?>"><?php _e( 'Pin Click Content (html allowed)' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'roontent' ); ?>"><?php _e( 'Pin Click Content (html allowed)' ); ?></label>
 		<textarea class="defaultinput" <?php echo $bizreadonly; ?> class="widefat" id="<?php echo $this->get_field_id( 'rocontent' ); ?>" name="<?php echo $this->get_field_name( 'rocontent' ); ?>" ><?php echo esc_attr( $rocontent ); ?></textarea>
 		</p>
-		
-		
-		
-		
-	
-		<?php 
+
+
+
+
+
+		<?php
 	}
-	
-	
+
+
 
 } // class getdirections
-

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: MapQuest, Maps, Responsive, Directions
 Requires at least: 3.4
 Tested up to: 4.0.1
-Stable tag: 1.23
+Stable tag: 1.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Get Directions is a responsive map plugin powered by MapQuest. Widget and shortc
 * Works on both Desktop and Mobile devices
 * Responsive
 
-The most comprehensive way for customers to get directions to your shop, office or location with ease on desktop, mobile & responsive themes 
+The most comprehensive way for customers to get directions to your shop, office or location with ease on desktop, mobile & responsive themes
 
 Once you set the location, visitors to the website will be able to get directions to that location.
 
@@ -98,6 +98,8 @@ We have some more plugins in the pipeline at http://llocally.com
 
 == Changelog ==
 
+= 1.24 =
+* Removed hard coded http:// to stop issues with insecure content on https://pages
 = 1.23 =
 * Important, geocoding by postcode is no longer supported in the shortcode, only use lat / long. Change your shortcodes if using postcode before upgrading. Changed calls to MapQuest Open rather than MapQuest Community as MapQuest is removing this as of 31 Dec 2014, so earlier versions of this plugin may not work after 1 Jan 2015
 = 1.22 =
@@ -114,15 +116,10 @@ define( 'MAPQUEST_API_KEY', 'your long api key here' ); to your wp-config.php fi
 = 1.002 =
 * allow setting spage =
 = 1.001b =
-* readme changes 
+* readme changes
 = 1.001a =
 * added images to readme
 = 1.0 =
-*  added readme.txt 
+*  added readme.txt
 
 == Upgrade notice ==
-
-
-
-
-
